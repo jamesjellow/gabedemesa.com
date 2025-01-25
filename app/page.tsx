@@ -1,101 +1,230 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+import MyPhoto from "./me.jpg";
+import Sentry from "./sentry.png";
+import ForGround from "./forground.png";
+import OpenGov from "./og.png";
+import FieldView from "./fv.png";
+
+interface Publication {
+  id: number;
+  title: string;
+  description: string;
+  publicationUrl: string;
+  date: string;
+}
+
+const projects = [
+  {
+    id: 1,
+    title: "Sentry Emergency Management Group",
+    description: "Company website for one of my clients",
+    imageUrl: Sentry.src,
+    projectUrl: "https://sentryemg.com/",
+  },
+  {
+    id: 2,
+    title: "Bayer ForGround",
+    description: "Platform to enroll farmers into sustainable practices",
+    imageUrl: ForGround.src,
+    projectUrl: "https://myforground.com",
+  },
+  {
+    id: 3,
+    title: "OpenGov Utility Billing",
+    description: "Utility billing solution for water, gas, and electric",
+    imageUrl: OpenGov.src,
+    projectUrl: "https://opengov.com/",
+  },
+  {
+    id: 4,
+    title: "Climate FieldView",
+    description: "Worked on the internal tools portal and dealer portal",
+    imageUrl: FieldView.src,
+    projectUrl: "https://opengov.com/",
+  },
+];
+
+const publications: Publication[] = [
+  {
+    id: 4,
+    title:
+      "Moore’s Law is Dead: Measuring the Next Generation of AI Compute in the Cloud",
+    description:
+      "Paper proposal for measuring the top metrics for measuring GPUs specifically for AI workloads.",
+    publicationUrl:
+      "https://www.linkedin.com/posts/gabedemesa_measuring-gpus-paper-activity-7282026691755974656-eLoC",
+    date: "December 15, 2024",
+  },
+];
+
+const educationList = [
+  {
+    id: 1,
+    degree: "Master of Computer Science",
+    institution: "University of Illinois, Urbana-Champaign",
+    year: "January 2023 - December 2024",
+    description: "Specialized in Artificial Intelligence and Machine Learning",
+  },
+  {
+    id: 2,
+    degree: "Bachelor of Science in Computer Science",
+    institution: "University of California, Irvine",
+    year: "September 2018 - December 2021",
+    description: "Specialized in information with high emphasis on databases",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-4xl mx-auto">
+        <section className="text-center mb-16 animate-fade-in">
+          <Image
+            priority
+            src={MyPhoto}
+            alt="Profile Picture"
+            className="mx-auto rounded-full mb-4 object-cover w-96 h-96"
+          />
+          <h1 className="text-4xl font-bold mb-2">Gabe De Mesa</h1>
+          <p className="text-xl text-gray-600">Full Stack Software Engineer</p>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <section className="mb-16 animate-slide-up">
+          <h2 className="text-2xl font-semibold mb-4">About Me 🙂</h2>
+          <p className="text-gray-700">
+            Hi thanks for checking me out! I&apos;m a passionate full stack
+            engineer with 4+ years of experience building enterprise grade web
+            applications using modern technologies. I haveve worked in fast
+            paced small startup environments and in large enterprise. I love
+            solving complex problems. My mission is to make the world a better
+            place with technology.
+          </p>
+        </section>
+
+        <section className="mb-16 animate-slide-up">
+          <h2 className="text-2xl font-semibold mb-4">Education 🎓</h2>
+          <div className="space-y-6">
+            {educationList.map((edu) => (
+              <div key={edu.id} className="bg-white rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
+                <p className="text-gray-600 mb-2">{edu.institution}</p>
+                <p className="text-sm text-gray-500 mb-2">{edu.year}</p>
+                <p className="text-gray-700">{edu.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-16 animate-slide-up">
+          <h2 className="text-2xl font-semibold mb-4">Projects 🧑‍💻</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project) => (
+              <Link
+                href={project.projectUrl}
+                key={project.id}
+                className="block"
+              >
+                <div className="rounded-lg shadow-md overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105">
+                  <Image
+                    src={project.imageUrl || "/placeholder.svg"}
+                    alt={project.title}
+                    width={300}
+                    height={200}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600">{project.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-16 animate-slide-up">
+          <h2 className="text-2xl font-semibold mb-4">Publications 📝</h2>
+          <div className="space-y-6">
+            {publications.map((publication) => (
+              <div
+                key={publication.id}
+                className="bg-white rounded-lg shadow-md p-6 transition-transform duration-300 ease-in-out transform"
+              >
+                <Link href={publication.publicationUrl} className="block">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {publication.title}
+                  </h3>
+                  <p className="text-gray-600 mb-2">
+                    {publication.description}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Published on {publication.date}
+                  </p>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-16 animate-slide-up">
+          <h2 className="text-2xl font-semibold mb-4">Skills 🛠️</h2>
+          <div className="flex flex-wrap gap-2">
+            {[
+              "JavaScript",
+              "Typescript",
+              "React",
+              "Node.js",
+              "Python",
+              "Frontend",
+              "Backend",
+              "Fullstack",
+              "DevOps",
+              "AI/ML",
+              "Prompt Engineering",
+              "Git",
+              "AWS",
+              "Kafka",
+              "Go",
+              "Java",
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="text-center animate-fade-in">
+          <h2 className="text-2xl font-semibold mb-4">Contact Me</h2>
+          <div className="flex justify-center space-x-4">
+            <a
+              href="https://github.com/jamesjellow"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/gabedemesa/"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="mailto:jellowjames@yahoo.com"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
