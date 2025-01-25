@@ -96,10 +96,10 @@ export default function Home() {
           <p className="text-gray-700">
             Hi thanks for checking me out! I&apos;m a passionate full stack
             engineer with 4+ years of experience building enterprise grade web
-            applications using modern technologies. I haveve worked in fast
-            paced small startup environments and in large enterprise. I love
-            solving complex problems. My mission is to make the world a better
-            place with technology.
+            applications using modern technologies. I have worked in fast paced,
+            small startup environments and in large enterprise. I love solving
+            complex problems. My mission is to make the world a better place
+            with technology.
           </p>
         </section>
 
